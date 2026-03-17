@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Tool App - Game, Downloaders & Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <h1>Masuk ke Dashboard</h1>
+            <p>Silakan login untuk mengakses fitur.</p>
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button id="loginBtn">🔓 Masuk</button>
+            <p class="login-note">(Gunakan username apa saja, password tidak dibutuhkan untuk demo)</p>
+        </div>
+    </div>
+
+    <div id="app" class="container" style="display: none;">
+        <div class="top-bar">
+            <div class="logo">🎮 Multi-Tool App 🌟</div>
+            <div id="userGreeting" class="user-greeting"></div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('game', event)">🎯 XOX Game</button>
+            <button class="tab-btn" onclick="showTab('downloaders', event)">📥 Downloaders</button>
+            <button class="tab-btn" onclick="showTab('chat', event)">💬 Public Chat</button>
+        </div>
+
+        <!-- XOX Game Tab -->
+        <div id="game-tab" class="tab-content">
+            <h2>🎯 Game XOX Online</h2>
+            <div id="gameSetup">
+                <input type="text" id="gameRoomId" placeholder="Masukkan Room ID (contoh: room1)">
+                <button id="joinGameBtn">🚀 Join Game</button>
+            </div>
+            <div id="gameArea" style="display: none;">
+                <canvas id="gameCanvas" width="600" height="600"></canvas>
+
+                <div id="scoreboard" class="game-scoreboard">
+                    <div id="scoreYou">Anda (X): 0</div>
+                    <div id="scoreOpponent">Lawan (O): 0</div>
+                </div>
+
+                <div id="gameStatus">⏳ Menunggu pemain lain...</div>
+                <button id="restartBtn" style="display: none;">🔄 Main lagi</button>
+            </div>
+        </div>
+
+        <!-- Downloaders Tab -->
+        <div id="downloaders-tab" class="tab-content" style="display: none;">
+            <h2>📥 Social Media Downloaders</h2>
+            
+            <div class="downloader-section">
+                <h3>🎵 TikTok Downloader</h3>
+                <input type="url" id="tiktokUrl" placeholder="Paste TikTok URL here">
+                <button onclick="downloadTikTok()">⬇️ Download</button>
+                <div id="tiktokResult"></div>
+            </div>
+
+            <div class="downloader-section">
+                <h3>📸 Instagram Downloader</h3>
+                <input type="url" id="instagramUrl" placeholder="Paste Instagram URL here">
+                <button onclick="downloadInstagram()">⬇️ Download</button>
+                <div id="instagramResult"></div>
+            </div>
+        </div>
+
+        <!-- Chat Tab -->
+        <div id="chat-tab" class="tab-content" style="display: none;">
+            <h2>💬 Public Chat Room</h2>
+            <div id="chatSetup">
+                <input type="text" id="username" placeholder="Your username">
+                <button id="joinChatBtn">🚀 Join Chat</button>
+            </div>
+            <div id="chatArea" style="display: none;">
+                <div id="chatMessages"></div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type your message...">
+                    <button onclick="sendMessage()">📤 Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="credits">
+        <p>Created with ❤️ by FahriGenzOffc</p>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
